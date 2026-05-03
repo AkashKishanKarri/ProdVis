@@ -102,7 +102,7 @@ export default function App() {
       <div className="main" style={{ flex: 1, display: 'flex', flexDirection: 'column', position: "relative", zIndex: 20, minWidth: 0, minHeight: 0 }}>
         <div className="topbar">
           <div className="topbar-avatar" style={{ overflow: 'hidden' }}>
-            <img src="/src/images/images-removebg-preview.png" alt="logo" style={{ width: '20px', height: '20px', objectFit: 'contain' }} />
+            <img src="/logo.png" alt="logo" style={{ width: '20px', height: '20px', objectFit: 'contain' }} />
           </div>
           <div className="topbar-info">
             <div className="topbar-title">ProdVis-AI</div>
@@ -117,7 +117,7 @@ export default function App() {
           {messages.map((m, i) => (
             <div key={i} className={`msg ${m.role}`}>
               <div className="msg-av" style={{ overflow: 'hidden' }}>
-                {m.role === 'ai' ? <img src="/src/images/images-removebg-preview.png" alt="ai" style={{ width: '16px', height: '16px', objectFit: 'contain' }} /> : <Brain size={14} color="white" />}
+                {m.role === 'ai' ? <img src="/logo.png" alt="ai" style={{ width: '16px', height: '16px', objectFit: 'contain' }} /> : <Brain size={14} color="white" />}
               </div>
               <div className="bubble">
                 {m.role === 'ai' && <div className="bubble-mode skill"><span className="bubble-mode-dot"></span>Paraphraser Mode</div>}
