@@ -127,12 +127,12 @@ export default function App() {
                 {m.role === 'ai' && !isGenerating && m.text && (
                   <button
                     onClick={() => handleCopy(m.text, i)}
-                    style={{ marginTop: '12px', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', background: 'rgba(255,255,255,0.1)', padding: '5px 10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', transition: 'all 0.2s' }}
+                    className="copy-btn"
                     onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
                     onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
                   >
                     {copiedIndex === i ? <Check size={14} color="#4ade80" /> : <Copy size={14} color="white" />}
-                    <span style={{ color: copiedIndex === i ? "#4ade80" : "white", fontWeight: 500 }}>{copiedIndex === i ? "Copied to clipboard!" : "Copy Paraphrased Text"}</span>
+                    <span style={{ color: copiedIndex === i ? "#4ade80" : "white", fontWeight: 500 }}>{copiedIndex === i ? "Copied!" : "Copy Text"}</span>
                   </button>
                 )}
               </div>
