@@ -15,7 +15,7 @@ export default function Chat() {
 
     const index = messages.length + 1;
 
-    const response = await fetch("https://akashkishan-prodvis-ai-backend.hf.space/ask", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/ask`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

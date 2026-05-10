@@ -38,7 +38,7 @@ export default function App() {
     let botIndex = -1;
 
     try {
-      const response = await fetch("https://akashkishan-prodvis-ai-backend.hf.space/ask", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/ask`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: userMsg.text })
@@ -48,26 +48,20 @@ export default function App() {
         throw new Error("Server error");
       }
 
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let fullText = "";
+      const data = await response.json();
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value || new Uint8Array());
-        fullText += chunk;
-
-        setMessages(prev => {
-          if (botIndex === -1) {
-            botIndex = prev.length - 1;
-          }
-          const updated = [...prev];
-          updated[botIndex] = { role: "ai", text: fullText };
-          return updated;
-        });
+      if (!data.success) {
+        throw new Error(data.error || "Rewrite failed");
       }
+
+      setMessages(prev => {
+        if (botIndex === -1) {
+          botIndex = prev.length - 1;
+        }
+        const updated = [...prev];
+        updated[botIndex] = { role: "ai", text: data.output };
+        return updated;
+      });
     } catch (e) {
       setMessages(prev => {
         if (botIndex === -1) botIndex = prev.length - 1;

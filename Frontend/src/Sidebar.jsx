@@ -5,7 +5,7 @@ export default function Sidebar() {
   const [skills, setSkills] = useState([]);
 
   const fetchSkills = async () => {
-    const res = await fetch("https://akashkishan-prodvis-ai-backend.hf.space/skills");
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/skills`);
     const data = await res.json();
     setSkills(data);
   };
@@ -18,7 +18,7 @@ export default function Sidebar() {
     const form = new FormData();
     form.append("file", file);
 
-    await fetch("https://akashkishan-prodvis-ai-backend.hf.space/upload-skill", {
+    await fetch(`${import.meta.env.VITE_API_URL}/upload-skill`, {
       method: "POST",
       body: form
     });
@@ -27,7 +27,7 @@ export default function Sidebar() {
   };
 
   const toggle = async (id) => {
-    await fetch("https://akashkishan-prodvis-ai-backend.hf.space/toggle-skill", {
+    await fetch(`${import.meta.env.VITE_API_URL}/toggle-skill`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
